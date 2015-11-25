@@ -41,8 +41,8 @@ app.get('/customer/:id', function(req, res) {
     var qbo = getQbo(req.session.qbo);
     qbo.getCustomer(req.params.id, function(err, customer) {
         console.log(customer)
-    })
     res.render('customer.ejs', {locals: {customer: customer}})
+    })
 })
 
 app.get('/requestToken', function(req, res) {
@@ -90,7 +90,7 @@ app.get('/callback', function(req, res) {
         // test out account access
         qbo.findAccounts(function(_, accounts) {
             accounts.QueryResponse.Account.forEach(function(account) {
-                console.log(account.Name)
+                //console.log(account.Name)
             })
         })
     res.send('<!DOCTYPE html><html lang="en"><head></head><body><script>window.opener.location.reload(); window.close();</script></body></html>')
@@ -106,6 +106,6 @@ var getQbo = function(args) {
         args.secret,
         args.companyid,
         true, // use the Sandbox
-        true); // turn debugging on
+        false); // turn debugging on
 
 };
